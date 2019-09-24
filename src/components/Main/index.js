@@ -27,7 +27,12 @@ class Main extends PureComponent {
   }
 
   render() {
-    const { books, onMoveBook, classes } = this.props;
+    const {
+      books,
+      onMoveBook,
+      onRemoveBook,
+      classes,
+    } = this.props;
 
     return (
       <div>
@@ -38,18 +43,21 @@ class Main extends PureComponent {
             title="Currently Reading"
             books={books.currentlyReading}
             onMoveBook={onMoveBook}
+            onRemoveBook={onRemoveBook}
           />
 
           <Shelf
             title="Want to read"
             books={books.wantToRead}
             onMoveBook={onMoveBook}
+            onRemoveBook={onRemoveBook}
           />
 
           <Shelf
             title="Read"
             books={books.read}
             onMoveBook={onMoveBook}
+            onRemoveBook={onRemoveBook}
           />
         </div>
 
@@ -73,6 +81,7 @@ Main.propTypes = {
     read: PropTypes.array.isRequired,
   }).isRequired,
   onMoveBook: PropTypes.func.isRequired,
+  onRemoveBook: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

@@ -14,7 +14,12 @@ const useStyles = makeStyles({
   },
 });
 
-function BookList({ books, actionType, clickAction }) {
+function BookList({
+  books,
+  actionType,
+  clickAction,
+  onRemoveBook,
+}) {
   const classes = useStyles();
 
   return (
@@ -30,7 +35,12 @@ function BookList({ books, actionType, clickAction }) {
           xl={1}
           className={classes.gridItem}
         >
-          <Book book={book} actionType={actionType} clickAction={clickAction} />
+          <Book
+            book={book}
+            actionType={actionType}
+            clickAction={clickAction}
+            onRemoveBook={onRemoveBook}
+          />
         </Grid>
       ))}
     </Grid>
@@ -45,6 +55,11 @@ BookList.propTypes = {
   ).isRequired,
   actionType: PropTypes.string.isRequired,
   clickAction: PropTypes.func.isRequired,
+  onRemoveBook: PropTypes.func,
+};
+
+BookList.defaultProps = {
+  onRemoveBook: () => {},
 };
 
 export default BookList;

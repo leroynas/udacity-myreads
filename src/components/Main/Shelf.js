@@ -12,7 +12,12 @@ const useStyles = makeStyles({
   },
 });
 
-function Shelf({ title, books, onMoveBook }) {
+function Shelf({
+  title,
+  books,
+  onMoveBook,
+  onRemoveBook,
+}) {
   const classes = useStyles();
 
   return (
@@ -21,7 +26,12 @@ function Shelf({ title, books, onMoveBook }) {
         {title}
       </Typography>
 
-      <BookList books={books} actionType="move" clickAction={onMoveBook} />
+      <BookList
+        books={books}
+        actionType="move"
+        clickAction={onMoveBook}
+        onRemoveBook={onRemoveBook}
+      />
     </div>
   );
 }
@@ -34,6 +44,7 @@ Shelf.propTypes = {
     }),
   ).isRequired,
   onMoveBook: PropTypes.func.isRequired,
+  onRemoveBook: PropTypes.func.isRequired,
 };
 
 export default Shelf;

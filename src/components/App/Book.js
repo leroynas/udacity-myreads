@@ -27,7 +27,12 @@ const useStyles = makeStyles({
   },
 });
 
-function Book({ book, actionType, clickAction }) {
+function Book({
+  book,
+  actionType,
+  clickAction,
+  onRemoveBook,
+}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const classes = useStyles();
 
@@ -88,24 +93,35 @@ function Book({ book, actionType, clickAction }) {
         >
           <MenuItem disabled>{actionText}</MenuItem>
           <MenuItem
-            disabled={actionType === 'move' && book.shelf === 'currentlyReading'}
+            selected={book.shelf === 'currentlyReading'}
+            disabled={book.shelf === 'currentlyReading'}
             onClick={() => { clickAction(book, 'currentlyReading'); }}
           >
             Currently Reading
           </MenuItem>
 
           <MenuItem
-            disabled={actionType === 'move' && book.shelf === 'wantToRead'}
+            selected={book.shelf === 'wantToRead'}
+            disabled={book.shelf === 'wantToRead'}
             onClick={() => { clickAction(book, 'wantToRead'); }}
           >
             Want to read
           </MenuItem>
 
           <MenuItem
-            disabled={actionType === 'move' && book.shelf === 'read'}
+            selected={book.shelf === 'read'}
+            disabled={book.shelf === 'read'}
             onClick={() => { clickAction(book, 'read'); }}
           >
             Read
+          </MenuItem>
+
+          <MenuItem
+            selected={!book.shelf}
+            disabled={!book.shelf}
+            onClick={() => { onRemoveBook(book); }}
+          >
+            None
           </MenuItem>
         </Menu>
       </CardActions>
@@ -124,6 +140,7 @@ Book.propTypes = {
   }).isRequired,
   actionType: PropTypes.string.isRequired,
   clickAction: PropTypes.func.isRequired,
+  onRemoveBook: PropTypes.func.isRequired,
 };
 
 export default Book;

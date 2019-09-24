@@ -38,6 +38,17 @@ class App extends PureComponent {
     this.setState(() => ({ books, ...relations }));
   }
 
+  removeBook = async (book) => {
+    this.setState((currentState) => ({
+      books: currentState.books
+        .filter((b) => b.id !== book.id),
+      [book.shelf]: currentState[book.shelf]
+        .filter((id) => id !== book.id),
+    }));
+
+    await BooksAPI.update(book, 'none');
+  }
+
   moveBook = async (oldBook, shelf) => {
     const book = { ...oldBook, shelf };
 
@@ -100,6 +111,7 @@ class App extends PureComponent {
             <Main
               books={this.getBookListing()}
               onMoveBook={this.moveBook}
+              onRemoveBook={this.removeBook}
             />
           )}
         />
