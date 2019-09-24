@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import DebounceInput from 'react-debounce-input';
 
 const useStyles = makeStyles({
   backButton: {
@@ -36,6 +37,8 @@ function Header({ onClickBack, onQueryChange }) {
 
         <InputBase
           placeholder="Search"
+          inputComponent={DebounceInput}
+          inputProps={{ debounceTimeout: 1000 }}
           onChange={onQueryChange}
         />
       </Toolbar>

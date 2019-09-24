@@ -40,12 +40,7 @@ class Search extends PureComponent {
 
   queryChange = (event) => {
     const { value } = event.target;
-
-    if (this.timer) clearTimeout(this.timer);
-
-    this.timer = setTimeout(() => {
-      this.searchBooks(value);
-    }, 50);
+    this.searchBooks(value);
   }
 
   goBack = () => {
