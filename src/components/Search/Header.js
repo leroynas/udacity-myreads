@@ -38,7 +38,7 @@ function Header({ onClickBack, onQueryChange }) {
         <InputBase
           placeholder="Search"
           inputComponent={DebounceInput}
-          inputProps={{ debounceTimeout: 1000 }}
+          inputProps={{ debounceTimeout: 300 }}
           onChange={onQueryChange}
         />
       </Toolbar>
