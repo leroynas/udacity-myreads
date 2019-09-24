@@ -31,10 +31,16 @@ class Search extends PureComponent {
   }
 
   searchBooks = async (query) => {
-    const books = await BooksAPI.search(query);
+    const { books: shelfBooks } = this.props;
+
+    const filterBooks = shelfBooks.map((book) => book.id);
+
+    const searchBooks = await BooksAPI.search(query)
+      .then((data) => data.filter((book) =>
+        !filterBooks.includes(book.id)));
 
     this.setState(() => ({
-      books: (Array.isArray(books) ? books : []),
+      books: (Array.isArray(searchBooks) ? searchBooks : []),
     }));
   }
 
@@ -68,6 +74,7 @@ class Search extends PureComponent {
 }
 
 Search.propTypes = {
+  books: PropTypes.arrayOf(PropTypes.object).isRequired,
   onAddBook: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

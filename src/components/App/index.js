@@ -89,6 +89,8 @@ class App extends PureComponent {
   })
 
   render() {
+    const { books } = this.state;
+
     return (
       <div>
         <Route
@@ -106,6 +108,7 @@ class App extends PureComponent {
           path="/search"
           render={() => (
             <Search
+              books={books}
               onAddBook={this.addBook}
             />
           )}
