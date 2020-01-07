@@ -1,5 +1,4 @@
 FROM mhart/alpine-node:11 AS builder
-ENV NODE_ENV=development
 WORKDIR /app
 COPY . .
 RUN yarn run build
