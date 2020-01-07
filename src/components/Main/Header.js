@@ -5,9 +5,7 @@ function Header() {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6">
-          MyReads
-        </Typography>
+        <Typography variant="h6">MyReads Application</Typography>
       </Toolbar>
     </AppBar>
   );
