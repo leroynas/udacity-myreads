@@ -12,14 +12,12 @@ import './index.css';
 const root = document.getElementById('root');
 
 ReactDOM.render(
-  (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ThemeProvider>
-  ),
-  root,
+  <ThemeProvider theme={theme}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </ThemeProvider>,
+  root
 );
 
 // If you want your app to work offline and load faster, you can change
