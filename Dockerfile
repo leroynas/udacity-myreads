@@ -3,7 +3,7 @@ WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn
 COPY . .
-RUN yarn run build
+RUN yarn run build --max_old_space_size=2048
 
 FROM mhart/alpine-node
 RUN yarn global add serve
